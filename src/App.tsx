@@ -11,7 +11,7 @@ import './App.css';
 
 import { PaymentRequestButton } from './modules/PaymentRequestButton';
 import { PaymentRequestForm, PaymentRequestObject } from './modules/PaymentRequestForm';
-import { PaymentRequestError } from './modules/PaymentRequestHandler'
+import { PaymentRequestError } from './modules/PaymentRequestHandler';
 
 const logo = require('./logo.svg');
 
@@ -35,9 +35,9 @@ class App extends React.Component {
                 Explore the new Payment Request API.
               </p>
               <code>
-                <span style={{color: "#3b78e7"}}><em>const</em></span> request 
-                <span style={{color: "#d10e73"}}> = new</span>
-                <span style={{color: "#5ead22"}}> PaymentRequest</span>
+                <span style={{color: '#3b78e7'}}><em>const</em></span> request 
+                <span style={{color: '#d10e73'}}> = new</span>
+                <span style={{color: '#5ead22'}}> PaymentRequest</span>
                 (supportedPaymentMethods, paymentDetails, options);
               </code>
             </div>

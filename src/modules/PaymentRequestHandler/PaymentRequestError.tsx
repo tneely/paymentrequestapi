@@ -9,10 +9,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-
-const mapStateToProps = (state:any, ownProps: any) => (
+const mapStateToProps = (state: {PaymentRequestHandler: {error: string}}) => (
   {
-    error: state.PaymentRequestHandler.error as string,
+    error: state.PaymentRequestHandler.error,
   }
 );
 
@@ -21,7 +20,7 @@ const mapDispatchToProps = (dispatch: Function) => (
   }
 );
 
-interface IPaymentRequestError extends React.Props<any> {
+interface IPaymentRequestError extends React.Props<{}> {
   error: string;
 }
 

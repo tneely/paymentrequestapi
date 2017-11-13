@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { Actions } from './index';
 import './PaymentRequestForm.css';
 
-const mapStateToProps = (state:any, ownProps: any) => (
+const mapStateToProps = (state: {PaymentRequest: {options: PaymentOptions}}) => (
   {
     options: state.PaymentRequest.options as PaymentOptions,
   }
@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch: Function) => (
   }
 );
 
-interface IPaymentOptions extends React.Props<any> {
+interface IPaymentOptions extends React.Props<{}> {
   options: PaymentOptions;
   onPaymentOptionsChange: Function;
 }
@@ -36,30 +36,36 @@ const PaymentOptionsCore = (props: IPaymentOptions) => (
   <form>
     <label>
       Request Name
-      <input type="checkbox" checked={props.options.requestPayerName}
+      <input 
+        type="checkbox" 
+        checked={props.options.requestPayerName}
         onChange={() => (
           props.onPaymentOptionsChange(
             {...props.options,
-              requestPayerName: !props.options.requestPayerName}
-          ))}/>
+              requestPayerName: !props.options.requestPayerName}))}
+      />
     </label>
     <label>
       Request Phone
-      <input type="checkbox" checked={props.options.requestPayerPhone}
+      <input 
+        type="checkbox" 
+        checked={props.options.requestPayerPhone}
         onChange={() => (
           props.onPaymentOptionsChange(
             {...props.options,
-              requestPayerPhone: !props.options.requestPayerPhone}
-          ))}/>
+              requestPayerPhone: !props.options.requestPayerPhone}))}
+      />
     </label>
     <label>
       Request Email
-      <input type="checkbox" checked={props.options.requestPayerEmail}
+      <input 
+        type="checkbox" 
+        checked={props.options.requestPayerEmail}
         onChange={() => (
           props.onPaymentOptionsChange(
             {...props.options,
-              requestPayerEmail: !props.options.requestPayerEmail}
-          ))}/>
+              requestPayerEmail: !props.options.requestPayerEmail}))}
+      />
     </label>
   </form>
 );

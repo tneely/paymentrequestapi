@@ -13,7 +13,7 @@ import { Actions } from './index';
 import { CurrencyInput } from './CurrencyInput';
 import './PaymentRequestForm.css';
 
-const mapStateToProps = (state:any, ownProps: any) => (
+const mapStateToProps = (state: {PaymentRequest: {paymentDetails: PaymentDetails}}) => (
   {
     paymentDetails: state.PaymentRequest.paymentDetails as PaymentDetails,
   }
@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch: Function) => (
   }
 );
 
-interface IPaymentDetails extends React.Props<any> {
+interface IPaymentDetails extends React.Props<{}> {
   paymentDetails: PaymentDetails;
   onPaymentDetailChange: Function;
   addDisplayItem: Function;
@@ -43,104 +43,108 @@ const PaymentDetailsCore = (props: IPaymentDetails) => (
       <h3>Total</h3>
       <label>
         Label:
-        <input type="text" value={
-          props.paymentDetails.total 
-          && props.paymentDetails.total.label}
+        <input 
+          type="text" 
+          value={
+            props.paymentDetails.total 
+            && props.paymentDetails.total.label}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => (
             props.onPaymentDetailChange(
               {...props.paymentDetails,
                 total: {...props.paymentDetails.total,
-                  label: e.target.value}}
-            ))}
+                  label: e.target.value}}))}
         />
       </label>
       <label>
         Currency:
-        <CurrencyInput value={
-          props.paymentDetails.total 
-          && props.paymentDetails.total.amount
-          && props.paymentDetails.total.amount.currency}
+        <CurrencyInput 
+          value={
+            props.paymentDetails.total 
+            && props.paymentDetails.total.amount
+            && props.paymentDetails.total.amount.currency}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => (
             props.onPaymentDetailChange(
               {...props.paymentDetails,
                 total: {...props.paymentDetails.total,
                   amount: {...props.paymentDetails!.total!.amount,
-                    currency: e.target.value}}}
-            ))}
-      />
+                    currency: e.target.value}}}))}
+        />
       </label>
       <label>
         Value:
-        <input type="number" value={
-          props.paymentDetails.total 
-          && props.paymentDetails.total.amount
-          && props.paymentDetails.total.amount.value}
+        <input 
+          type="number" 
+          value={
+            props.paymentDetails.total 
+            && props.paymentDetails.total.amount
+            && props.paymentDetails.total.amount.value}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => (
             props.onPaymentDetailChange(
               {...props.paymentDetails,
                 total: {...props.paymentDetails.total,
                   amount: {...props.paymentDetails!.total!.amount,
-                    value: e.target.value=="" ? "0" : e.target.value}}}
-            ))}
+                    value: e.target.value === '' ? '0' : e.target.value}}}))}
         />
       </label>
     </div>
     <br/>
-    <button onClick={()=>props.addDisplayItem()}>Add Display Item</button>
+    <button onClick={() => props.addDisplayItem()}>Add Display Item</button>
     {
       props.paymentDetails.displayItems!.map((currentItem, currentIndex) => {
         return (
-          <div>
+          <div key={currentIndex}>
             <label>
               Label:
-              <input type="text" value={props.paymentDetails.displayItems![currentIndex]!.label}
+              <input 
+                type="text" 
+                value={props.paymentDetails.displayItems![currentIndex]!.label}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => (
                   props.onPaymentDetailChange(
                     {...props.paymentDetails,
                       displayItems: props.paymentDetails.displayItems!.map((item, index) => (
-                        index==currentIndex ? 
+                        index === currentIndex ? 
                         {...currentItem, 
                           label: e.target.value}
                         : item
-                      ))}
-                  ))}
+                      ))}))}
               />
             </label>
             <label>
               Currency:
-              <CurrencyInput value={props.paymentDetails.displayItems![currentIndex]!.amount!.currency}
+              <CurrencyInput 
+                value={props.paymentDetails.displayItems![currentIndex]!.amount!.currency}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => (
                   props.onPaymentDetailChange(
                     {...props.paymentDetails,
                       displayItems: props.paymentDetails.displayItems!.map((item, index) => (
-                        index==currentIndex ? 
+                        index === currentIndex ? 
                         {...currentItem, 
                           amount: {...currentItem.amount,
                             currency: e.target.value}}
                         : item
-                      ))}
-                  ))}
-            />
+                      ))}))}
+              />
             </label>
             <label>
               Value:
-              <input type="number" value={props.paymentDetails.displayItems![currentIndex]!.amount!.value}
+              <input 
+                type="number" 
+                value={props.paymentDetails.displayItems![currentIndex]!.amount!.value}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => (
                   props.onPaymentDetailChange(
                     {...props.paymentDetails,
                       displayItems: props.paymentDetails.displayItems!.map((item, index) => (
-                        index==currentIndex ? 
+                        index === currentIndex ? 
                         {...currentItem, 
                           amount: {...currentItem.amount,
-                            value: e.target.value=="" ? "0" : e.target.value}}
+                            value: e.target.value === '' ? '0' : e.target.value}}
                         : item
-                    ))}
-                  ))}
+                    ))}))}
               />
             </label>
-            <button onClick={()=>props.removeDisplayItem(currentIndex)}>Remove</button>
+            <button onClick={() => props.removeDisplayItem(currentIndex)}>Remove</button>
           </div>
-        )
+        );
       })
     }
   </div>

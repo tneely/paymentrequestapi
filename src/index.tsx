@@ -15,7 +15,9 @@ import createStore from './store/createStore';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
+/* tslint:disable */
 const preLoadedState = (window as any).__PRELOADED_STATE__;
+/* tslint:enable */
 const store = createStore(preLoadedState);
 
 ReactDOM.render(

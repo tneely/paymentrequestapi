@@ -7,12 +7,12 @@
 */
 
 export enum Actions {
-  PaymentDetailsChange = "PAYMENT_DETAILS_CHANGE",
-  PaymentMethodsChange = "PAYMENT_METHODS_CHANGE",
-  PaymentOptionsChange = "PAYMENT_OPTIONS_CHANGE",
-  AddDisplayItem = "ADD_DISPLAY_ITEM",
-  RemoveDisplayItem = "REMOVE_DISPLAY_ITEM",
-  BadInput = "BAD_INPUT",
+  PaymentDetailsChange = 'PAYMENT_DETAILS_CHANGE',
+  PaymentMethodsChange = 'PAYMENT_METHODS_CHANGE',
+  PaymentOptionsChange = 'PAYMENT_OPTIONS_CHANGE',
+  AddDisplayItem = 'ADD_DISPLAY_ITEM',
+  RemoveDisplayItem = 'REMOVE_DISPLAY_ITEM',
+  BadInput = 'BAD_INPUT',
 }
 
 const initialState = {
@@ -30,7 +30,7 @@ const initialState = {
       label: 'Total',
       amount: {
         currency: 'USD',
-        value: "1.0",
+        value: '1.0',
       },
     },
     displayItems: [
@@ -47,7 +47,9 @@ const displayItemLabels = ['Subtotal', 'Tax',
   'Discount', 'Special', ';)', 'Shipping', 'Processing fee',
   'Service charge', 'Internet tax'];
 
-export const PaymentRequestFormReducer = (state = initialState, action: {type: Actions, payload: any}) => {
+/* tslint:disable */
+export const PaymentRequestFormReducer = (state = initialState, action: {type: Actions, payload: any }) => {
+/* tslint:enable */
   switch (action.type) {
 
     case Actions.PaymentDetailsChange:
@@ -70,7 +72,7 @@ export const PaymentRequestFormReducer = (state = initialState, action: {type: A
                 label: displayItemLabels[Math.floor(Math.random() * displayItemLabels.length)],
                 amount: {
                   currency: 'USD',
-                  value: "1.0",
+                  value: '1.0',
                 }
               }]}};
 
@@ -78,7 +80,7 @@ export const PaymentRequestFormReducer = (state = initialState, action: {type: A
       return { ...state,
         paymentDetails: { ...state.paymentDetails,
           displayItems: state.paymentDetails.displayItems.filter(
-            (obj, index) => index != action.payload)}};
+            (obj, index) => index !== action.payload)}};
 
     default:
       return state;

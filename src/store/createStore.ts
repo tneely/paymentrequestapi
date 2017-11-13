@@ -19,7 +19,9 @@ export default (initialState = {}) => {
   let composeEnhancers = compose;
 
   if (isDev) {
+    /* tslint:disable */
     const composeWithDevToolsExtension = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+    /* tslint:enable */
     if (typeof composeWithDevToolsExtension === 'function') {
       composeEnhancers = composeWithDevToolsExtension;
     }

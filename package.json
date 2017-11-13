@@ -2,6 +2,7 @@
   "name": "givememoney",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://www.tneely.com/paymentapi",
   "dependencies": {
     "@types/jest": "^20.0.8",
     "@types/node": "^8.0.28",

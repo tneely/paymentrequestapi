@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import './PaymentRequestForm.css';
 
-const mapStateToProps = (state:any, ownProps: any) => (
+const mapStateToProps = (state: {PaymentRequest: PaymentRequest}, ) => (
   {
     paymentRequestObject: state.PaymentRequest
   }
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch: Function) => (
   }
 );
 
-interface IPaymentRequestObject extends React.Props<any> {
+interface IPaymentRequestObject extends React.Props<{}> {
   paymentRequestObject: Object;
 }
 

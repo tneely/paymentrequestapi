@@ -10,20 +10,25 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 export enum PaymentRequestActions {
-  PaymentRequestShown = "PAYMENTREQUEST_SHOWN",
-  PaymentRequestFailure = "PAYMENTREQUEST_FAILURE",
-  PaymentRequestSuccess = "PAYMENTREQUEST_SUCCESS",
-  PaymentRequestSubmitted = "PAYMENTREQUEST_SUBMITTED",
+  PaymentRequestShown = 'PAYMENTREQUEST_SHOWN',
+  PaymentRequestFailure = 'PAYMENTREQUEST_FAILURE',
+  PaymentRequestSuccess = 'PAYMENTREQUEST_SUCCESS',
+  PaymentRequestSubmitted = 'PAYMENTREQUEST_SUBMITTED',
 }
 
-const mapStateToProps = (state:any, ownProps: any) => (
+const mapStateToProps = (state:
+                          {PaymentRequest:
+                            {paymentDetails: PaymentDetails, 
+                            supportedPaymentMethods: PaymentMethodData[],
+                            options: PaymentOptions}}, 
+                         ownProps: {id?: string, className?: string, fallBack: React.ReactElement<{}>}) => (
   {
-    id: ownProps.id as string,
-    className: ownProps.className as string,
-    fallBack: ownProps.fallBack as JSX.Element,
-    paymentDetails: state.PaymentRequest.paymentDetails as PaymentDetails,
-    supportedPaymentMethods: state.PaymentRequest.supportedPaymentMethods as PaymentMethodData[],
-    options: state.PaymentRequest.options as PaymentOptions,
+    id: ownProps.id,
+    className: ownProps.className,
+    fallBack: ownProps.fallBack,
+    paymentDetails: state.PaymentRequest.paymentDetails,
+    supportedPaymentMethods: state.PaymentRequest.supportedPaymentMethods,
+    options: state.PaymentRequest.options,
   }
 );
 
@@ -46,10 +51,10 @@ const mapDispatchToProps = (dispatch: Function) => (
   }
 );
 
-interface IPaymentRequestButton extends React.Props<any> {
-  id: string;
-  className: string;
-  fallBack: JSX.Element;
+interface IPaymentRequestButton extends React.Props<{}> {
+  id?: string;
+  className?: string;
+  fallBack: React.ReactElement<{}>;
   supportedPaymentMethods: PaymentMethodData[];
   paymentDetails: PaymentDetails;
   options: PaymentOptions;
@@ -60,13 +65,15 @@ interface IPaymentRequestButton extends React.Props<any> {
 }
 
 const PaymentRequestButtonCore = (props: IPaymentRequestButton) => {
-
+  /* tslint:disable */
   if ((window as any).PaymentRequest) {
-
+  /* tslint:enable */
     return (
-      <button id={props.id} className={props.className} key={props.key}
-        onClick={() => 
-        {
+      <button 
+        id={props.id} 
+        className={props.className} 
+        key={props.key}
+        onClick={() => {
           try {
             const request = new PaymentRequest(
               props.supportedPaymentMethods,
@@ -82,11 +89,11 @@ const PaymentRequestButtonCore = (props: IPaymentRequestButton) => {
                 return paymentResponse.complete()
                 .then(() => {
                   props.onPaymentRequestSuccess();
-                })
+                });
               })
               .catch((err) => {
                 props.onPaymentRequestFailure(err.message);
-              })
+              });
             }
           } catch (err) {
             props.onPaymentRequestFailure(err.message);

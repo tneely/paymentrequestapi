@@ -12,14 +12,16 @@ const initialState = {
   error: ''
 };
 
+/* tslint:disable */
 export const PaymentRequestHandlerReducer = (state = initialState, 
   action: {type: Actions, payload: any}) => {
+/* tslint:enable */
 
   switch (action.type) {
     case Actions.PaymentRequestShown:
-      return {...state, error: ''}
+      return {...state, error: ''};
     case Actions.PaymentRequestFailure:
-      return {...state, error: action.payload}
+      return {...state, error: action.payload};
 
     default:
       return state;

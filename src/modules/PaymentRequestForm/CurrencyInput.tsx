@@ -190,9 +190,9 @@ const ISO4217 = {
   ZAR: 'Rand',
   ZMW: 'Zambian Kwacha',
   ZWL: 'Zimbabwe Dollar',
-}
+};
 
-interface ICurrencyInput extends React.Props<any> {
+interface ICurrencyInput extends React.Props<{}> {
   value?: string;
   onChange: Function;
 }

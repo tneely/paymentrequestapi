@@ -39,6 +39,7 @@
 .App-payment-fun {
   align-items: stretch;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 
