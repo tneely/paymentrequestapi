@@ -25,14 +25,14 @@ class App extends React.Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>GiveMeMoneyAPI</h2>
+          <h2>Payment Request API</h2>
         </div>
 
         <div className="App-content">
           <div className="App-content-container">
             <div className="App-intro">
               <p>
-                Explore the new Payment Request API.
+                Explore the new Payment Request API (<a href="https://github.com/tneely/paymentrequestapi">source</a>).
               </p>
               <code>
                 <span style={{color: '#3b78e7'}}><em>const</em></span> request 
@@ -58,7 +58,7 @@ class App extends React.Component {
         </div>
 
         <div className="App-footer">
-          <strong>GiveMeMoneyAPI</strong> by <a href="https://www.github.com/tneely">Taylor Neely</a>
+          <strong>Payment Request API</strong> by <a href="https://www.github.com/tneely">Taylor Neely</a>
         </div>
       </div>
     );
