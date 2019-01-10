@@ -1,4 +1,4 @@
-#Payment Request API
+# Payment Request API
 
 A small React app to explore the structure of the new Payment Request API.
 
